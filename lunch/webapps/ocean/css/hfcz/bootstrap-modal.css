@@ -1,0 +1,108 @@
+.modal-open {
+    overflow: hidden;
+}
+
+.modal {
+    position: absolute;
+    top:0;
+    right: 0;
+    left: 0;
+    bottom:0;
+    z-index: 1050;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0
+}
+
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+    -webkit-transform: translate(0,-25%);
+    -ms-transform: translate(0,-25%);
+    -o-transform: translate(0,-25%);
+    transform: translate(0,-25%)
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0,0);
+    -ms-transform: translate(0,0);
+    -o-transform: translate(0,0);
+    transform: translate(0,0)
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto
+}
+
+.modal-dialog {
+    width: 8.4375rem;
+    margin:3.53125rem auto 0;
+    position: relative;
+}
+
+.modal .close-wrap {
+    padding:0.5rem;
+    position:absolute;
+    top:-0.2rem;
+    right:-0.2rem;
+    z-index:1051;
+}
+
+.modal .close {
+    width:0.375rem;
+    height:0.375rem;
+    display:inline-block;
+    background:url("https://img.alicdn.com/imgextra/i2/643039162/TB2U9B5oFXXXXbHXXXXXXXXXXXX_!!643039162.png") no-repeat;
+    background-size:contain;
+}
+
+.modal-content {
+    padding:0.5625rem 0.71875rem;
+    position: relative;
+    color: #333;
+    background-color: #fff;
+    border-radius: 0.09375rem;
+    outline: 0;
+    word-break:break-all;
+}
+
+.modal-header {
+    text-align:center;
+}
+
+.modal-title {
+    line-height:1.4;
+    font-weight:bold;
+}
+
+.modal-body {
+    padding-top: 0.25rem;
+    position: relative;
+}
+
+.modal-footer {
+    text-align:center;
+    overflow:hidden;
+}
+
+/*遮挡层*/
+.modal-backdrop {
+    width:100%;
+    height:100%;    
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000
+}
+.modal-backdrop.fade {
+    filter: alpha(opacity=0);
+    opacity: 0
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5
+}

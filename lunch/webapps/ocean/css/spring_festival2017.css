@@ -1,0 +1,287 @@
+html{background-color:#ef2929;}
+body,div,p,ul,li{padding:0;margin:0;box-sizing:border-box;}
+img{display:block;width:100%;}
+.text-ellipsis {overflow:hidden;display:-webkit-box;text-overflow:ellipsis;-webkit-box-orient:vertical;word-break:break-all;}
+#contentWrap{position:relative;width:10rem;padding-bottom:1rem;margin:0 auto;line-height:1.6;}
+#topBanner{height:4.25rem;}
+/*---------------点福灯抽奖--------------*/
+#lotteryWrap{margin-bottom:.125rem;}
+#lotteryWrap .title{height:2.3125rem;}
+#lotteryWrap .turnplateWrap{width:9.5rem;padding:0 .25rem .25rem;margin:0 auto;border-radius:.25rem;background-color:#bd1008;}
+#lotteryWrap .rule{height:0.96875rem;line-height:0.96875rem;padding:0 .25rem;overflow:hidden;}
+#lotteryWrap .rule .f-left{padding-left:0.625rem;background:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2EImSdSFmpuFjSZFrXXayOXXa_!!2296013456.png') no-repeat center left;background-size:contain;color:#ffd700;}
+
+#lotteryWrap .rule .rule-btn{color:#fff;text-decoration:underline;}
+#lotteryWrap #turnplate{position:relative;width:9rem;height:7.75rem;padding:0.4375rem;background:url('https://img.alicdn.com/imgextra/i4/2296013456/TB2PoTjc88lpuFjy0FnXXcZyXXa_!!2296013456.gif') no-repeat;background-size:contain;}
+#lotteryWrap #turnplate table{border-spacing:0.03125rem;border-collapse:separate;}
+#lotteryWrap #turnplate td{width:2.65625rem;height:2.1875rem;border-radius:.25rem;}
+#lotteryWrap #turnplate td.lottery-unit{background-color:#ffefef;box-shadow:0 -.25rem #fec6bc inset;}
+#lotteryWrap #turnplate td.active{background-color:#ffee78;box-shadow:0 -.25rem #e2cd3f inset;}
+/*抽奖按钮*/
+#lotteryBtn{z-index:100;position:relative;}
+/*奖品*/
+#lotteryWrap #turnplate #awardList{z-index:10;position:absolute;top:.4375rem;left:.4375rem;width:8.1875rem;height:6.78125rem;}
+/*------------------福袋--------------------*/
+#luckyBagWrap{margin-bottom:.25rem;}
+#luckyBagWrap .title{height:2.71875rem;}
+#luckyBagWrap .lantern-list{padding-left:.25rem;margin-bottom:0.4375rem;border-top:0.03125rem solid #1c1c1e;overflow:hidden;}
+#luckyBagWrap .lantern-list li{float:left;width:1.75rem;height:2.46875rem;margin-right:0.1875rem;background:url('https://img.alicdn.com/imgextra/i4/2296013456/TB2UuqVdJXnpuFjSZFoXXXLcpXa_!!2296013456.png') no-repeat;background-size:contain;}
+#luckyBagWrap .lantern-list li.active{background-image:url('https://img.alicdn.com/imgextra/i4/2296013456/TB2r1qPdItnpuFjSZFvXXbcTpXa_!!2296013456.png');}
+#luckyBagWrap .img-wrap{width:6.15625rem;height:5rem;margin:0.125rem auto 0.875rem;}
+/*立即领取按钮*/
+#luckyBagWrap #luckyBagBtn{z-index:100;position:absolute;top:4.5rem;left:1.34375rem;width:7.3125rem;height:1.21875rem;margin:0 auto;background:url('https://img.alicdn.com/imgextra/i3/2296013456/TB29guudJBopuFjSZPcXXc9EpXa_!!2296013456.png') no-repeat;background-size:contain;}
+#luckyBagWrap #luckyBagBtn.active{background-image:url('https://img.alicdn.com/imgextra/i3/2296013456/TB2.xGWdJ4opuFjSZFLXXX8mXXa_!!2296013456.png');}
+#luckyBagWrap #luckyBagBtn.inactive{background-image:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2qdqNdORnpuFjSZFCXXX2DXXa_!!2296013456.png');}
+#luckyBagWrap .desc{color:#fff;text-align:center;}
+/*-------------------密令红包--------------------*/
+#pwdRedPacket{margin-bottom:.25rem;}
+#pwdRedPacket .title{height:2.40625rem;}
+#dateNav{padding-top:0.09375rem;margin-bottom:.25rem;text-align:center;color:#fff;background-color:#bd1008;}
+/*#dateNav ul{height:1.375rem;}*/
+.date{width:2.125rem;line-height:1.3;padding-top:0.15625rem;padding-bottom:0.28125rem;border-radius:0.125rem .125rem 0 0;}
+.date.active{color:#ffd700;background-color:#ef2929}
+.group-wrap{display:none;padding-left:0.15625rem;padding-right:0.15625rem;}
+.group-wrap.active{display:block}
+.group-wrap ul li{position:relative;padding-top:.5rem;padding-bottom:0.3125rem;margin-bottom:0.15625rem;border-radius:0.125rem;text-align:center;background-color:#fff;}
+.group-wrap ul li .start-time{line-height:1;}
+.group-wrap ul li .start-time .pic{display:inline-block;width:0.390625rem;height:0.25rem;}
+.group-wrap ul li .start-time .time{margin-left:0.234375rem;margin-right:0.234375rem;color:#ff006c;}
+.group-wrap ul li .pwd{padding-top:.5rem;padding-bottom:.5rem;color:#000;line-height:1.2;}
+.group-wrap ul li .copy-btn{width:5.5625rem;height:0.96875rem;line-height:0.96875rem;margin:0 auto;border-radius:0.96875rem;text-align:center;color:#fff;background-color:#cdcdcd;-webkit-user-select: none; user-select: none;}
+.group-wrap ul li.started .copy-btn{background-color:#ff006c;}
+.group-wrap ul li .copy-btn.copied{position:absolute;visibility:hidden;background-color:#cdcdcd;}
+.group-wrap ul li .copy-btn.copied span{display:inline-block;padding-left:0.5625rem;color:#666;background-image:url('https://img.alicdn.com/imgextra/i3/2296013456/TB2etPwdJFopuFjSZFHXXbSlXXa_!!2296013456.png');background-size:.5rem .5rem;background-repeat:no-repeat;background-position:left center;}
+.group-wrap ul li .status-icon{position:absolute;top:.25rem;left:0;width:1.59375rem;height:0.78125rem;background-repeat:no-repeat;;background-size:contain;}
+.group-wrap ul li.expired .status-icon{background-image:url('https://img.alicdn.com/imgextra/i3/2296013456/TB2JRYhc9FjpuFjSspbXXXagVXa_!!2296013456.png');}
+.group-wrap ul li.started .status-icon{background-image:url('https://img.alicdn.com/imgextra/i1/2296013456/TB2hgO0c1J8puFjy1XbXXagqVXa_!!2296013456.png');}
+.group-wrap ul li.foreshow .status-icon{background-image:url('https://img.alicdn.com/imgextra/i1/2296013456/TB2D7i7c4XlpuFjSsphXXbJOXXa_!!2296013456.png');}
+
+#downloadTip {
+	z-index: 1002;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	padding: .25rem 0;
+	color: #fff;
+	background-color: #333;
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+	transform: translateY(-100%);
+	-webkit-transform: translateY(-100%);
+}
+#downloadBtn {
+	width: 5rem;
+	height: 1.125rem;
+	line-height: 1.125rem;
+	margin: .25rem auto 0;
+	background: #f53e7b;
+	border-radius: 0.09375rem;
+}
+/*灯笼动画对象*/
+#latternObj{display:none;z-index:9999;position:absolute;width:.5rem;height:1rem;background:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2EImSdSFmpuFjSZFrXXayOXXa_!!2296013456.png') no-repeat;background-size:contain;-webkit-transform:translateZ(0);transform:translateZ(0);}
+/*----------------------公用---------------------*/
+.f-left{float:left;}
+.f-right{float:right;}
+
+/*---------------------模态框------------------------*/
+.modal {
+	z-index: 1001;
+	display: none;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	width: 8.4375rem;
+	max-height: 100%;
+	border-radius: 0.125rem;
+	background-color: #fff;
+	-webkit-overflow-scrolling: touch;
+}
+.modal-close {
+	z-index: 1002;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 1.25rem;
+	height: 1.25rem;
+	background: url('https://img.alicdn.com/imgextra/i2/2296013456/TB24EYqc9FjpuFjSszhXXaBuVXa_!!2296013456.png') no-repeat center;
+	background-size:0.40625rem 0.40625rem;
+}
+.modal-header {
+	line-height:1;
+	text-align: center;
+}
+
+.modal-title {
+	line-height: 1;
+	font-weight: bold;
+}
+
+.modal-body {
+	position: relative;
+	line-height:1.6;
+	text-align:center;
+}
+
+.modal-footer {
+	line-height:1;
+	padding:0.1875rem 0 0.3125rem;
+	text-align: center;
+	color:#999;
+}
+
+.rule-modal .modal-header{height:1.375rem;line-height:1.375rem;border-top-left-radius:.125rem;border-top-right-radius:.125rem;color:#fff;background-color:#ef2929;}
+.rule-modal .modal-body{padding:.5rem;text-align:left;}
+.rule-modal .modal-body li{padding-left:.8em;text-indent:-.8em;}
+
+.pure-modal .modal-body {display: table-cell;width: 10rem;height: 3rem;vertical-align: middle;}
+
+.lantern-modal .modal-header{height:0.96875rem;line-height:0.96875rem;margin-top:.5rem;}
+.lantern-modal .modal-header span{display:inline-block;padding-left:0.5625rem;background:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2EImSdSFmpuFjSZFrXXayOXXa_!!2296013456.png') no-repeat left center;background-size:0.5rem 0.96875rem;color:#db2421;}
+.lantern-modal .modal-body.inactive{display:none;}
+.lantern-modal .lantern-count{margin:0 0.09375rem;color:#db2421;}
+.lantern-modal .contentWrap{width:7.15625rem;padding:0.28125rem 0;margin:0 auto;background:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2yMO0c1J8puFjy1XbXXagqVXa_!!2296013456.png') no-repeat;background-size:contain;}
+.lantern-modal .contentWrap .aligin-middle{height:1.9375rem;color:#fff;}
+.lantern-modal .contentWrap .aligin-middle .result span{color:#ffde00;}
+
+.hb-modal{width:7.125rem;background-color:transparent;}
+.hb-modal .modal-close{top:-.3rem;right:-1rem;background-image:url('https://img.alicdn.com/imgextra/i3/2296013456/TB2Zhjdc90jpuFjy0FlXXc0bpXa_!!2296013456.png');background-size:0.875rem 0.875rem;}
+.hb-modal .modal-body{height:8.125rem;line-height:1;padding-top:6rem;background:url('https://img.alicdn.com/imgextra/i2/2296013456/TB2R45IdUhnpuFjSZFpXXcpuXXa_!!2296013456.png') no-repeat;background-size:contain;color:#fff;}
+.hb-modal .modal-body .award{margin-bottom:.5rem;}
+.hb-modal .modal-body .award span{color:#fbe750;}
+.hb-modal .modal-body .btn{color:#fbe750;text-decoration:underline;}
+.hb-modal .modal-body #jfBtn{display:none;}
+/*水平垂直居中*/
+.aligin-middle {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-ms-grid-row-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+#backdrop {
+	z-index: 1000;
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #000;
+	opacity: 0.5;
+}
+
+/*--------------动画----------------*/
+.animated{-webkit-animation-duration:1.5s;-webkit-animation-fill-mode:both;animation-duration:1.5s;animation-fill-mode:both;}
+.animated.infinite{-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite;}
+
+@keyframes tada {
+	from {
+		transform: scale3d(1, 1, 1);
+		-webkit-transform: scale3d(1, 1, 1);
+	}
+	10%, 20% {
+		transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -5deg);
+		-webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -5deg);
+	}
+	30%, 50%, 70%, 90% {
+		transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+		-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 5deg);
+	}
+	40%, 60%, 80% {
+		transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+		-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -5deg);
+	}
+	to {
+		transform: scale3d(1, 1, 1);
+		-webkit-transform: scale3d(1, 1, 1);
+	}
+}
+@-webkit-keyframes tada {
+	from {
+		transform: scale3d(1, 1, 1);
+		-webkit-transform: scale3d(1, 1, 1);
+	}
+	10%, 20% {
+		transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -5deg);
+		-webkit-transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -5deg);
+	}
+	30%, 50%, 70%, 90% {
+		transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+		-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 5deg);
+	}
+	40%, 60%, 80% {
+		transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+		-webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -5deg);
+	}
+	to {
+		transform: scale3d(1, 1, 1);
+		-webkit-transform: scale3d(1, 1, 1);
+	}
+}
+.tada {
+	-webkit-animation-name: tada;
+	animation-name: tada;
+}
+
+.fs0{font-size:0;}
+[data-dpr="1"] .fs9{font-size:9px;}
+[data-dpr="1"] .fs10{font-size:10px;}
+[data-dpr="1"] .fs11{font-size:11px;}
+[data-dpr="1"] .fs12{font-size:12px;}
+[data-dpr="1"] .fs13{font-size:13px;}
+[data-dpr="1"] .fs14{font-size:14px;}
+[data-dpr="1"] .fs15{font-size:15px;}
+[data-dpr="1"] .fs16{font-size:16px;}
+[data-dpr="1"] .fs17{font-size:17px;}
+[data-dpr="1"] .fs18{font-size:18px;}
+[data-dpr="1"] .fs19{font-size:19px;}
+[data-dpr="1"] .fs20{font-size:20px;}
+[data-dpr="1"] .fs21{font-size:21px;}
+[data-dpr="1"] .fs22{font-size:22px;}
+[data-dpr="1"] .fs24{font-size:24px;}
+[data-dpr="1"] .fs25{font-size:25px;}
+
+[data-dpr="2"] .fs9{font-size:18px;}
+[data-dpr="2"] .fs10{font-size:20px;}
+[data-dpr="2"] .fs11{font-size:22px;}
+[data-dpr="2"] .fs12{font-size:24px;}
+[data-dpr="2"] .fs13{font-size:26px;}
+[data-dpr="2"] .fs14{font-size:28px;}
+[data-dpr="2"] .fs15{font-size:30px;}
+[data-dpr="2"] .fs16{font-size:32px;}
+[data-dpr="2"] .fs17{font-size:34px;}
+[data-dpr="2"] .fs18{font-size:36px;}
+[data-dpr="2"] .fs19{font-size:38px;}
+[data-dpr="2"] .fs20{font-size:40px;}
+[data-dpr="2"] .fs21{font-size:42px;}
+[data-dpr="2"] .fs22{font-size:44px;}
+[data-dpr="2"] .fs24{font-size:48px;}
+[data-dpr="2"] .fs25{font-size:50px;}
+
+[data-dpr="3"] .fs9{font-size:27px;}
+[data-dpr="3"] .fs10{font-size:30px;}
+[data-dpr="3"] .fs11{font-size:33px;}
+[data-dpr="3"] .fs12{font-size:36px;}
+[data-dpr="3"] .fs13{font-size:39px;}
+[data-dpr="3"] .fs14{font-size:42px;}
+[data-dpr="3"] .fs15{font-size:45px;}
+[data-dpr="3"] .fs16{font-size:48px;}
+[data-dpr="3"] .fs17{font-size:51px;}
+[data-dpr="3"] .fs18{font-size:54px;}
+[data-dpr="3"] .fs19{font-size:57px;}
+[data-dpr="3"] .fs20{font-size:60px;}
+[data-dpr="3"] .fs21{font-size:63px;}
+[data-dpr="3"] .fs22{font-size:66px;}
+[data-dpr="3"] .fs24{font-size:72px;}
+[data-dpr="3"] .fs25{font-size:75px;}

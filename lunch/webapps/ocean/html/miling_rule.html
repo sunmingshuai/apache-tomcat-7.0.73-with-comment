@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <script src="https://g.alicdn.com/mtb/??lib-flexible/0.3.2/flexible_css.js,lib-flexible/0.3.2/flexible.js"></script>
+	<script type="text/javascript" src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <title>活动规则</title>
+    <style>
+        html{
+            background:#fff;
+        }
+        body {
+            width:10rem;
+            padding:0 0.25rem 0.5rem;
+            margin:0 auto;
+            font-family:Arial;
+            color:#333;
+            box-sizing:border-box;
+        }
+        .rule dt {
+            margin-top:0.4rem;
+            font-weight:bold;
+        }
+        .rule dd {
+            line-height:1.5;
+            text-indent:2em;
+            word-break:break-all;
+        }
+        [data-dpr="1"] .fontSize12{font-size: 12px;}
+        [data-dpr="2"] .fontSize12{font-size: 24px;}
+        [data-dpr="3"] .fontSize12{font-size: 36px;}
+    </style>
+</head>
+<body>
+    <dl class="rule fontSize12">
+        <dt>一、活动时间：</dt>
+<!--         <dd>2017年2月4日10:00:00至2017年2月11日23:59:59。</dd> -->
+        <dd id="actTime"></dd>
+        <dt>二、参与条件：</dt>
+        <dd>仅在淘粉吧客户端（iOS8.3.0及以上或Android8.3.0及以上版本）上领取。</dd>
+        <dt>三、参与方式：</dt>
+        <dd>在淘粉吧客户端首页的搜索框输入特定的密令（一段特定文字）并搜索，即可参与抽取密令红包，用户有机会获得集分宝、普通返利红包、超高返利红包或活动商品红包。</dd>
+        <dt>四、活动细则：</dt>
+        <dd>1.活动奖品为返利红包或集分宝，金额随机；用户参与活动后，会在随即跳出的页面中显示中奖情况（包括是否中奖、奖品类型及对应金额）。</dd>
+        <dd>2.奖品发放时间：集分宝将在中奖后6小时内（正常为实时）发送到中奖用户绑定的支付宝帐户中，用户可以进入“支付宝-我的-余额-集分宝”里查看。返利红包将在中奖后6小时内（正常为实时）发送到中奖用户的淘粉吧账户中，用户可进入“淘粉吧-我的-我的红包”进行查看。</dd>
+        <dd>3.红包有效期及使用门槛，请注意查看红包所载明的信息。</dd>
+        <dt>五、其他说明：</dt>
+        <dd>1.同一用户，是指淘宝账户、支付宝账户、收货人姓名、详细地址、联系方式、IP地址等与用户身份相关的信息，其中任意一项或数项存在相同、相似、通过特定标记形成批量信息、或其他非真实有效等情形的，均将被认定为同一用户，按活动规则中的同一用户处理。</dd>
+        <dd>2.在获取和使用红包过程中，如果出现违规行为（如作弊领取、恶意套现、刷取信誉、虚假交易等），淘粉吧将取消您的中奖资格，并收回返利红包（含使用中的红包及未使用的红包），必要时追究法律责任。</dd>
+    </dl>
+</body>
+<script type="text/javascript">
+// 采用正则表达式获取地址栏参数
+function GetQueryString(name)
+{
+	var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+	var r = window.location.search.substr(1).match(reg);
+	if(r!=null){
+		return  unescape(r[2]);
+	}else{
+		return null;
+	}
+}
+// 日期转为字符串
+function dateFormat(date) {
+	var fmt = "hh:mm:ss";
+    var o = {
+        "h+" : date.getHours(),                   //小时 
+        "m+" : date.getMinutes(),                 //分 
+        "s+" : date.getSeconds()                 //秒 
+    }; 
+    if(/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (date.getFullYear()+"").substr(4 - RegExp.$1.length));
+    }
+    for(var k in o) {
+        if(new RegExp("("+ k +")").test(fmt)) {
+            fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));
+        }
+    }
+    return date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日" + fmt; 
+}
+	var startTime = new Date(parseInt(GetQueryString("startTime")));
+	var endTime = new Date(parseInt(GetQueryString("endTime")));
+	var text = dateFormat(startTime)+"至"+dateFormat(endTime)+"。";
+	$("#actTime").html(text);
+	
+</script>
+</html>
