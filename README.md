@@ -9,7 +9,9 @@ file->new->module from existing sources
 3.配置成可以debug的java工程  
 run->edit configurations-> + ->application  
 在右面的方框中 
-Main class: org.apache.catalina.startup.Bootstrap
-Vm options: -Dcatalina.home="/Users/sunms/workspace/sourcecode/apache-tomcat-7.0.73-src/lunch"
+Main class: org.apache.catalina.startup.Bootstrap  
+Vm options: -Dcatalina.home="/Users/sunms/workspace/sourcecode/apache-tomcat-7.0.73-src/lunch"  
 jre: 1.7
 
+4.debug入口  
+ BootStrap.main();
