@@ -193,7 +193,6 @@ public final class Bootstrap {
     public void init()
         throws Exception
     {
-
         // Set Catalina path
 	    String userDir = System.getProperty("user.dir");
 	    //检查设置的启动项:catalina.home参数 例如我的-Dcatalina.home="/Users/sunms/workspace/sourcecode/apache-tomcat-7.0.73-src/lunch"
@@ -428,11 +427,11 @@ public final class Bootstrap {
                 daemon.stop();
             } else if (command.equals("start")) {
                 //tomcat容器启动 通过反射的方式 调用catalina的方法
-	            
 	            //设置catalina的await标志为true
                 daemon.setAwait(true);
-                //1. load 2. start
+                //1. load
                 daemon.load(args);
+                //2. start
                 daemon.start();
             } else if (command.equals("stop")) {
                 daemon.stopServer(args);

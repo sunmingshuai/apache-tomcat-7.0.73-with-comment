@@ -616,7 +616,8 @@ public class Catalina {
 
             try {
                 inputSource.setByteStream(inputStream);
-                digester.push(this);//Catalina
+                //作为栈底元素:Catalina
+                digester.push(this);
                 digester.parse(inputSource);
             } catch (SAXParseException spe) {
                 log.warn("Catalina.start using " + getConfigFile() + ": " +
@@ -643,8 +644,8 @@ public class Catalina {
 
         // Start the new server
         try {
-        	//容器初始化 StandardServer##init()
-            getServer().init();
+	        //容器初始化链式调用 StandardServer##init()
+	        getServer().init();
         } catch (LifecycleException e) {
             if (Boolean.getBoolean("org.apache.catalina.startup.EXIT_ON_INIT_FAILURE")) {
                 throw new java.lang.Error(e);
