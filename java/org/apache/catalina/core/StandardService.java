@@ -537,7 +537,6 @@ public class StandardService extends LifecycleMBeanBase implements Service {
         
         if (container != null) {
 	        //初始化容器StandEngine
-            //初始化的过程到engine容器阶段就结束了
             container.init();
         }
 

@@ -286,7 +286,7 @@ public class Catalina {
 
 
     /**
-     * 解析conf/server.xml文档
+     * 定义解析conf/server.xml文档的规则事件
      * xml文档很灵活 大量的配置文件都是xml形式的 但灵活并不是随便 是需要遵循预定义的规则
      * Create and configure the Digester we will be using for startup.
      */
@@ -309,6 +309,7 @@ public class Catalina {
                                  "org.apache.catalina.core.StandardServer",
                                  "className");
         digester.addSetProperties("Server");
+        //调用Catalina.setServer()方法
         digester.addSetNext("Server",
                             "setServer",
                             "org.apache.catalina.Server");
@@ -356,10 +357,10 @@ public class Catalina {
                             "addExecutor",
                             "org.apache.catalina.Executor");
 
-        //连接器Connector
+        //连接器Connector <重点>
         digester.addRule("Server/Service/Connector",
                          new ConnectorCreateRule());
-        //<connector />元素有很多'属性'是对应的Connector中所没有的 比如maxThreads 而是在connector的`子容器`内 所以就不是一般的addSetProperties
+        //<connector/>元素有很多'属性'是对应的Connector中所没有的 比如maxThreads 而是在connector的`子容器`内 所以就不是一般的addSetProperties
 	    //而是增加了SetAllPropertiesRule IntrospectionUtils.setProperty方法中如果发现没有setXxx方法的时候 会试着调用setProperty方法
         digester.addRule("Server/Service/Connector",
                          new SetAllPropertiesRule(new String[]{"executor"}));
@@ -378,12 +379,14 @@ public class Catalina {
 
         // Add RuleSets for nested elements
         digester.addRuleSet(new NamingRuleSet("Server/GlobalNamingResources/"));
-        //EngineConfig
+        
+        //EngineConfig 最重要的一点就是添加了 EngineConfig
         digester.addRuleSet(new EngineRuleSet("Server/Service/"));
-        // HostConfig 很重要的一个生命周期监听器 (忽略了 就很难读懂代码的逻辑了)
+        // 添加HostConfig监听器 重要
         digester.addRuleSet(new HostRuleSet("Server/Service/Engine/"));
-        //ContextConfig 很重要的一个生命周期监听器 同上 context标签涉及东西比较多
+        // 添加ContextConfig监听器  重要 context标签涉及东西比较多 ps: 一般没有context标签
         digester.addRuleSet(new ContextRuleSet("Server/Service/Engine/Host/"));
+        
         //TODO Cluster
         addClusterRuleSet(digester, "Server/Service/Engine/Host/Cluster/");
         digester.addRuleSet(new NamingRuleSet("Server/Service/Engine/Host/Context/"));

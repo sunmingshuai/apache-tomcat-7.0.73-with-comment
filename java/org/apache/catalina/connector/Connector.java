@@ -587,8 +587,8 @@ public class Connector extends LifecycleMBeanBase  {
      * @param protocol The Coyote protocol name
      */
     public void setProtocol(String protocol) {
-
-        if (AprLifecycleListener.isAprAvailable()) {//false
+        //false
+        if (AprLifecycleListener.isAprAvailable()) {
             if ("HTTP/1.1".equals(protocol)) {
                 setProtocolHandlerClassName
                     ("org.apache.coyote.http11.Http11AprProtocol");

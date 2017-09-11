@@ -48,7 +48,7 @@ public class StandardEngine extends ContainerBase implements Engine {
      * Create a new StandardEngine component with the default basic Valve.
      */
     public StandardEngine() {
-
+        
         super();
         pipeline.setBasic(new StandardEngineValve());
         /* Set the jmvRoute using the system property jvmRoute */
@@ -60,7 +60,7 @@ public class StandardEngine extends ContainerBase implements Engine {
         //TODO tomcat启动线程后台线程之一 加载web应用程序 或者说加载context
         // By default, the engine will hold the reloading thread
         backgroundProcessorDelay = 10;
-
+        
     }
 
 

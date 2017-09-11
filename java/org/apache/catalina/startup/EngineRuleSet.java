@@ -68,7 +68,8 @@ public class EngineRuleSet extends RuleSetBase {
 
         super();
         this.namespaceURI = null;
-        this.prefix = prefix;// Server/Service/
+        // Server/Service/
+        this.prefix = prefix;
 
     }
 
@@ -92,16 +93,18 @@ public class EngineRuleSet extends RuleSetBase {
                                  "org.apache.catalina.core.StandardEngine",
                                  "className");
         digester.addSetProperties(prefix + "Engine");
-        //为Engine增加生命周期监听 例如调用start()方法
+        // 为Engine增加生命周期监听 例如调用start()方法 如果不了解这一点 可能会找不到代码调用的地方
+	    // LifecycleListenerRule 本身也是一个解析规则Rule 继续进去看
         digester.addRule(prefix + "Engine",
                          new LifecycleListenerRule
                          ("org.apache.catalina.startup.EngineConfig",
                           "engineConfigClass"));
+        //容器是从Engine阶段开始算的 Server Service并不算作容器的一部分
         digester.addSetNext(prefix + "Engine",
                             "setContainer",
                             "org.apache.catalina.Container");
 
-        //TODO 集群 Cluster configuration start
+        //TODO Cluster configuration start
         digester.addObjectCreate(prefix + "Engine/Cluster",
                                  null, // MUST be specified in the element
                                  "className");

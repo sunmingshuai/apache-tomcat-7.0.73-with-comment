@@ -146,9 +146,10 @@ public abstract class ContainerBase extends LifecycleMBeanBase
 
 
     /**
+     *
      * The processor delay for this component.
      */
-    protected int backgroundProcessorDelay = -1;//10
+    protected int backgroundProcessorDelay = -1;
 
 
     /**

@@ -69,7 +69,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
     // ------------------------------------------------------------ Constructor
 
     public JIoEndpoint() {
-        // 初始化的设置为0 后面会设置为用户设置的数量
+        // 初始化设置为0 后面会设置为用户设置的数量
         // Set maxConnections to zero so we can tell if the user has specified
         // their own value on the connector when we reach bind()
         setMaxConnections(0);

@@ -16,6 +16,17 @@
  */
 package org.apache.catalina.deploy;
 
+import org.apache.catalina.*;
+import org.apache.catalina.mbeans.MBeanUtils;
+import org.apache.catalina.util.Introspection;
+import org.apache.catalina.util.LifecycleMBeanBase;
+import org.apache.juli.logging.Log;
+import org.apache.juli.logging.LogFactory;
+import org.apache.naming.ContextBindings;
+import org.apache.tomcat.util.ExceptionUtils;
+import org.apache.tomcat.util.res.StringManager;
+
+import javax.naming.NamingException;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.Serializable;
@@ -26,23 +37,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.naming.NamingException;
-
-import org.apache.catalina.Container;
-import org.apache.catalina.Context;
-import org.apache.catalina.Engine;
-import org.apache.catalina.LifecycleException;
-import org.apache.catalina.LifecycleState;
-import org.apache.catalina.Server;
-import org.apache.catalina.mbeans.MBeanUtils;
-import org.apache.catalina.util.Introspection;
-import org.apache.catalina.util.LifecycleMBeanBase;
-import org.apache.juli.logging.Log;
-import org.apache.juli.logging.LogFactory;
-import org.apache.naming.ContextBindings;
-import org.apache.tomcat.util.ExceptionUtils;
-import org.apache.tomcat.util.res.StringManager;
-
 
 /**
  * Holds and manages the naming resources defined in the J2EE Enterprise 
@@ -50,7 +44,7 @@ import org.apache.tomcat.util.res.StringManager;
  *
  * @author Remy Maucherat
  */
-public class NamingResources extends LifecycleMBeanBase implements Serializable {
+public class  NamingResources extends LifecycleMBeanBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
     

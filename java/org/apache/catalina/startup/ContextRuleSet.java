@@ -72,7 +72,8 @@ public class ContextRuleSet extends RuleSetBase {
 
         super();
         this.namespaceURI = null;
-        this.prefix = prefix;// Server/Service/Engine/Host/
+        // Server/Service/Engine/Host/
+        this.prefix = prefix;
 
     }
 
@@ -106,7 +107,6 @@ public class ContextRuleSet extends RuleSetBase {
      * @param digester Digester instance to which the new Rule instances
      *  should be added.
      */
-    //TODO StandardContext
     @Override
     public void addRuleInstances(Digester digester) {
 

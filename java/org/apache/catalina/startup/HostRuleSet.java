@@ -68,7 +68,8 @@ public class HostRuleSet extends RuleSetBase {
 
         super();
         this.namespaceURI = null;
-        this.prefix = prefix;// Server/Service/Engine/
+        // Server/Service/Engine/
+        this.prefix = prefix;
 
     }
 
