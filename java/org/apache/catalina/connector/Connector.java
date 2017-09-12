@@ -962,7 +962,7 @@ public class Connector extends LifecycleMBeanBase  {
 	     * @see CoyoteAdapter#service(org.apache.coyote.Request, org.apache.coyote.Response)
 	     */
         adapter = new CoyoteAdapter(this);
-        //Http11Protocol,
+        //Http11Protocol
         protocolHandler.setAdapter(adapter);
 
         // Make sure parseBodyMethodsSet has a default
@@ -979,7 +979,7 @@ public class Connector extends LifecycleMBeanBase  {
         }
 
         try {
-            //
+            // 创建ServerSocket
             protocolHandler.init();
         } catch (Exception e) {
             throw new LifecycleException
@@ -989,6 +989,7 @@ public class Connector extends LifecycleMBeanBase  {
 
         // Initialize mapper listener
         // Actually Nothing Done Here
+	    // 很重要的一个类 init方法只是注册了mbean 后面会分析到
         mapperListener.init();
     }
 

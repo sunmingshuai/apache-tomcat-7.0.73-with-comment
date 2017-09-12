@@ -392,7 +392,8 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
             acceptorThreadCount = 1;
         }
         // Initialize maxConnections
-        if (getMaxConnections() == 0) {//true
+        // 如果server.xml中没有配置maxConnections参数 默认为200
+        if (getMaxConnections() == 0) {
             // User hasn't set a value - use the default
             setMaxConnections(getMaxThreadsInternal());//200 所以tomcat默认的最大连接数量是200个
         }

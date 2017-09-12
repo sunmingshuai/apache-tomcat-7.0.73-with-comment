@@ -663,6 +663,7 @@ public abstract class AbstractEndpoint<S> {
 
     public final void init() throws Exception {
         testServerCipherSuitesOrderSupport();
+        //启动时绑定
         if (bindOnInit) {
             bind();
             bindState = BindState.BOUND_ON_INIT;

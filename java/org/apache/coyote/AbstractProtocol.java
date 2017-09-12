@@ -290,6 +290,7 @@ public abstract class AbstractProtocol<S> implements ProtocolHandler,
      * so it can be used directly in an ObjectName.
      */
     public String getName() {
+        //http-bio for http1.1
         StringBuilder name = new StringBuilder(getNamePrefix());
         name.append('-');
         if (getAddress() != null) {
@@ -445,8 +446,8 @@ public abstract class AbstractProtocol<S> implements ProtocolHandler,
             Registry.getRegistry(null, null).registerComponent(
                     getHandler().getGlobal(), rgOname, null );
         }
-
-        String endpointName = getName();// prefix-address-port e.g. http-bio-8080
+	    // prefix-address-port e.g. http-bio-8080
+        String endpointName = getName();
         endpoint.setName(endpointName.substring(1, endpointName.length()-1));//(http-bio-8080,)
 
         try {
