@@ -737,7 +737,7 @@ public final class StandardServer extends LifecycleMBeanBase implements Server {
     @Override
     protected void startInternal() throws LifecycleException {
 
-        // 发起事件监听的事件 监听器的工作原理就是
+        // 发起事件监听的事件 监听器的工作原理就是事件的发起方持有感兴趣的监听器 然后逐个的回调
         fireLifecycleEvent(CONFIGURE_START_EVENT, null);
         setState(LifecycleState.STARTING);
 

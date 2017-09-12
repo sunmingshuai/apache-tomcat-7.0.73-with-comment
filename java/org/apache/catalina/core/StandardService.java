@@ -432,6 +432,7 @@ public class StandardService extends LifecycleMBeanBase implements Service {
             log.info(sm.getString("standardService.start.name", this.name));//Catalina
         setState(LifecycleState.STARTING);
 
+        // engine
         // Start our defined Container first
         if (container != null) {
             synchronized (container) {

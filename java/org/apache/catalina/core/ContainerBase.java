@@ -1088,6 +1088,8 @@ public abstract class ContainerBase extends LifecycleMBeanBase
         // Start our child containers, if any
         Container children[] = findChildren();
         List<Future<Void>> results = new ArrayList<Future<Void>>();
+        // 1. engine启动host
+	    // 2. host启动context (默认server.xml中没有context标签)
         for (int i = 0; i < children.length; i++) {
             results.add(startStopExecutor.submit(new StartChild(children[i])));
         }
@@ -1115,7 +1117,8 @@ public abstract class ContainerBase extends LifecycleMBeanBase
         setState(LifecycleState.STARTING);
 
         // Start our thread
-	    // 启动一个后台守护线程(ContainerBackgroundProcessor[StandardEngine]) 作用?
+	    // 启动一个后台守护线程(ContainerBackgroundProcessor[StandardEngine]) 作用
+	    //
         threadStart();
 
     }
