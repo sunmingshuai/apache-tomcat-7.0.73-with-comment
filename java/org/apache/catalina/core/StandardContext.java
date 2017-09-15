@@ -5387,7 +5387,7 @@ public class StandardContext extends ContainerBase
 
 
     /**
-     *   最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用`mvn package`打包成标准web项目结构) 放到webapps目录下面
+     *   最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用`mvn package`命令打包成标准web项目结构) 放到webapps目录下面
      *   然后一步一步的跟进调试 如果对webapps里面自带的项目熟悉的话 用那个也是可以的 最好还是用自己做的项目
      * Start this component and implement the requirements
      * of {@link org.apache.catalina.util.LifecycleBase#startInternal()}.
@@ -5408,7 +5408,7 @@ public class StandardContext extends ContainerBase
             broadcaster.sendNotification(notification);
         }
 
-        // configured属性 todo
+        // configured属性 标志位
         setConfigured(false);
         boolean ok = true;
 
@@ -6428,7 +6428,7 @@ public class StandardContext extends ContainerBase
     private void postWorkDirectory() {
 
         // Acquire (or calculate) the work directory path
-	    // work/Catalina/localhost/name
+	    // point to work/Catalina/localhost/name
         String workDir = getWorkDir();
         if (workDir == null || workDir.length() == 0) {
 
