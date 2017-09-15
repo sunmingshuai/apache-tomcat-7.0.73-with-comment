@@ -5456,7 +5456,7 @@ public class StandardContext extends ContainerBase
         getCharsetMapper();
 
         // Post work directory
-	    // work/Catalina/localhost/
+	    // work/Catalina/localhost/context-name
         postWorkDirectory();
 
         // Validate required extensions

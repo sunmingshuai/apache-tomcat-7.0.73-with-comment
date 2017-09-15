@@ -842,6 +842,7 @@ public class ContextConfig implements LifecycleListener {
                     Boolean.valueOf(context.getXmlNamespaceAware())));
         }
 
+        // 加载web.xml配置文件
         webConfig();
 
         if (!context.getIgnoreAnnotations()) {
@@ -1177,7 +1178,7 @@ public class ContextConfig implements LifecycleListener {
     }
 
     /**
-     * TODO 加载具体web应用程序实例
+     * 加载具体web应用程序实例
      * Scan the web.xml files that apply to the web application and merge them
      * using the rules defined in the spec. For the global web.xml files,
      * where there is duplicate configuration, the most specific level wins. ie
