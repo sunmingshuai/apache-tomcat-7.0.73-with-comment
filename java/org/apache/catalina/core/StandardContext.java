@@ -1622,6 +1622,7 @@ public class StandardContext extends ContainerBase
         // Create a mapper the first time it is requested
         if (this.charsetMapper == null) {
             try {
+            	//CharsetMapper
                 Class<?> clazz = Class.forName(charsetMapperClass);
                 this.charsetMapper = (CharsetMapper) clazz.newInstance();
             } catch (Throwable t) {
@@ -5386,8 +5387,8 @@ public class StandardContext extends ContainerBase
 
 
     /**
-     * Sun: 最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用mvn package打包成标准web项目结构) 放到webapps目录下面
-     *      然后一步一步的跟进调试 如果对webapps里面自带的项目熟悉的话 用那个也是可以的 最好还是用自己做的项目
+     *   最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用`mvn package`打包成标准web项目结构) 放到webapps目录下面
+     *   然后一步一步的跟进调试 如果对webapps里面自带的项目熟悉的话 用那个也是可以的 最好还是用自己做的项目
      * Start this component and implement the requirements
      * of {@link org.apache.catalina.util.LifecycleBase#startInternal()}.
      *
@@ -5407,12 +5408,14 @@ public class StandardContext extends ContainerBase
             broadcaster.sendNotification(notification);
         }
 
+        // configured属性 todo
         setConfigured(false);
         boolean ok = true;
 
         // Currently this is effectively a NO-OP but needs to be called to
         // ensure the NamingResources follows the correct lifecycle
-	    String tempPath = getPath();//context path
+	    //context path
+	    String tempPath = getPath();
         if (namingResources != null) {
             namingResources.start();
         }
@@ -5449,9 +5452,11 @@ public class StandardContext extends ContainerBase
         }
 
         // Initialize character set mapper
+	    // CharsetMapper
         getCharsetMapper();
 
         // Post work directory
+	    // work/Catalina/localhost/
         postWorkDirectory();
 
         // Validate required extensions
@@ -5523,6 +5528,7 @@ public class StandardContext extends ContainerBase
                     ((Lifecycle) resources).start();
 
                 // Notify our interested LifecycleListeners
+	            // 这里需要注意StandardContext类的ContextConfig监听器 有对Lifecycle.CONFIGURE_START_EVENT事件做处理
                 fireLifecycleEvent(Lifecycle.CONFIGURE_START_EVENT, null);
                 
                 // Start our child containers, if not already started
@@ -6422,7 +6428,8 @@ public class StandardContext extends ContainerBase
     private void postWorkDirectory() {
 
         // Acquire (or calculate) the work directory path
-        String workDir = getWorkDir();// work/Catalina/localhost/name
+	    // work/Catalina/localhost/name
+        String workDir = getWorkDir();
         if (workDir == null || workDir.length() == 0) {
 
             // Retrieve our parent (normally a host) name

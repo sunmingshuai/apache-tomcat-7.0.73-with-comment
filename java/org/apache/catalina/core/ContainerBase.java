@@ -861,6 +861,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
                 throw new IllegalArgumentException("addChild:  Child name '" +
                                                    child.getName() +
                                                    "' is not unique");
+            // StandardHost
             child.setParent(this);  // May throw IAE
             children.put(child.getName(), child);
         }
@@ -872,6 +873,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
             if ((getState().isAvailable() ||
                     LifecycleState.STARTING_PREP.equals(getState())) &&
                     startChildren) {
+            	// 启动子容器 StandardContext
                 child.start();
             }
         } catch (LifecycleException e) {
@@ -1350,8 +1352,8 @@ public abstract class ContainerBase extends LifecycleMBeanBase
             }
             current = current.getNext();
         }
-        // Lifecycle.PERIODIC_EVENT
-	    // HostConfig
+        // 发布StandardHost硬编码添加的HostConfig生命周期监听器感兴趣的Lifecycle.PERIODIC_EVENT事件
+	    // 需要读者注意HostConfig与ContextConfig监听器 了解监听器感兴趣的事件 有利于找到后面阅读源代码的入口
         fireLifecycleEvent(Lifecycle.PERIODIC_EVENT, null);
     }
 
@@ -1446,8 +1448,9 @@ public abstract class ContainerBase extends LifecycleMBeanBase
             return;
 
         threadDone = false;
+	    //ThreadName: ContainerBackgroundProcessor[StandardEngine]
         String threadName = "ContainerBackgroundProcessor[" + toString() + "]";
-        thread = new Thread(new ContainerBackgroundProcessor(), threadName);//ThreadName:ContainerBackgroundProcessor[StandardEngine]
+        thread = new Thread(new ContainerBackgroundProcessor(), threadName);
 	    // 后台/守护线程 唯一的非守护线程是server的监听shutdown端口的线程
         thread.setDaemon(true);
         thread.start();
@@ -1481,6 +1484,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
 
 
     /**
+     * 周期性的调用自身以及子容器的backgroundProcess方法
      * Private thread class to invoke the backgroundProcess method 
      * of this container and its children after a fixed delay.
      */

@@ -47,9 +47,9 @@ public final class ContextName {
     
     
     /**
-     * 1. 如果是在conf/Catalina/localhost下面的xml文件的形式 并且想把path设成／的形式 而不是带项目路径的形式的话
+     * 1. 如果是在conf/Catalina/localhost下面的xml文件的形式 并且想把访问的path设成不带项目路径的形式的话
      *    就把文件命名为##或者ROOT的形式(不考虑版本号)
-     * 2. 如果是部署在webapps目录下面的形式的话 并且想把path设成/的形式 而不是带项目路径的形式的话
+     * 2. 如果是部署在webapps目录下面的形式的话 并且想把访问的path设成不带项目路径的形式的话
      *    就把文件命名为##或者ROOT的形式(不考虑版本号)
      * Creates an instance from a context name, display name, base name,
      * directory name, WAR name or context.xml name.

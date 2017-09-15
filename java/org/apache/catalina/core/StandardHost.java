@@ -633,6 +633,7 @@ public class StandardHost extends ContainerBase implements Host {
     @Override
     public void addChild(Container child) {
 
+        // 硬编码加入内存泄漏追踪器 ps:好像没什么用
         child.addLifecycleListener(new MemoryLeakTrackingListener());
 
         if (!(child instanceof Context))

@@ -377,6 +377,8 @@ public class HostConfig
 
     /**
      * Create the digester which will be used to parse context config files.
+     *
+     * contextClassName: org.apache.catalina.core.StandardContext
      */
     protected static Digester createDigester(String contextClassName) {
         Digester digester = new Digester();
@@ -460,9 +462,11 @@ public class HostConfig
      * in our "application root" directory.
      */
     protected void deployApps() {
-
-        File appBase = appBase();// webapps
+    
+        //default webapps
+        File appBase = appBase();
         File configBase = configBase();// conf/Catalina/localhost/
+	    // standardhost可以配置忽略webapps目录下的一定规则的文件
         String[] filteredAppPaths = filterAppPaths(appBase.list());// Ignore:do nothing
 	    // 对应着部署web应用的三种方式
 	    // 1.xml描述文件
@@ -743,7 +747,8 @@ public class HostConfig
 
 
     /**
-     * Deploy WAR files.
+     *  部署war包 以.war结尾的文件
+     *  Deploy WAR files.
      */
     protected void deployWARs(File appBase, String[] files) {
 
@@ -1109,6 +1114,7 @@ public class HostConfig
 
 
     /**
+     *  部署文件目录
      * Deploy directories.
      */
     protected void deployDirectories(File appBase, String[] files) {
@@ -1148,13 +1154,12 @@ public class HostConfig
 
 
     /**
-     * 部署webapps下面的web项目
+     * 部署webapps下面的web项目(文件夹)
      * @param cn
      * @param dir
      */
     protected void deployDirectory(ContextName cn, File dir) {
-
-
+	    
         long startTime = 0;
         // Deploy the application in this directory
         if( log.isInfoEnabled() ) {
@@ -1164,7 +1169,9 @@ public class HostConfig
         }
 
         Context context = null;
-        File xml = new File(dir, Constants.ApplicationContextXml);// META-INF/context.xml
+	    // META-INF/context.xml
+        File xml = new File(dir, Constants.ApplicationContextXml);
+        // conf/Catalina/localhost/xxx.xml
         File xmlCopy = new File(configBase(), cn.getBaseName() + ".xml");
 
         DeployedApplication deployedApp;
@@ -1224,9 +1231,11 @@ public class HostConfig
                         cn.getPath(), xml, xmlCopy));
                 context = new FailedContext();
             } else {
+            	// 通过反射构造一个StandardContext实例 最常用的方式
                 context = (Context) Class.forName(contextClass).newInstance();
             }
 
+            // 为StandardContext硬编码添加org.apache.catalina.startup.ContextConfig监听器
             Class<?> clazz = Class.forName(host.getConfigClass());
             LifecycleListener listener =
                 (LifecycleListener) clazz.newInstance();

@@ -339,7 +339,7 @@ public class ContextConfig implements LifecycleListener {
 
         // Process the event that has occurred
         if (event.getType().equals(Lifecycle.CONFIGURE_START_EVENT)) {
-            //TODO
+            // 比较隐蔽的一个事件处理 但这个方法很重要
             configureStart();
         } else if (event.getType().equals(Lifecycle.BEFORE_START_EVENT)) {
             beforeStart();
@@ -1381,10 +1381,19 @@ public class ContextConfig implements LifecycleListener {
         Host host = (Host) context.getParent();
 
         DefaultWebXmlCacheEntry entry = hostWebXmlCache.get(host);
-        // conf/web.xml
-        InputSource globalWebXml = getGlobalWebXmlSource();
-        //null
-        InputSource hostWebXml = getHostWebXmlSource();
+	    // tomcat中web.xml可以有不同的层级(conf/web.xml;conf/Catalina/localhost/web.xml,your-project/web.xml) 以实现多个项目之间的配置的复用
+	    /**
+	     *  conf/web.xml中提供了所有web项目通用的配置项
+	     *  1. 注册DefaultServlet(servlet-name:default) 拦截路径为"/" 如果没有其他servlet处理请求 就交由defaultservlet处理
+	     *  2. 注册JspServlet(servlet-name:jsp) 拦截路径为"*.jsp,*.jspx" 拦截以*.jsp或者*.jspx结尾的路径
+	     *  3. 设置session过期时间 默认为30分钟
+	     *  4. 添加常用的浏览器能够处理的mime-mapping
+	     */
+	    InputSource globalWebXml = getGlobalWebXmlSource();
+	    /**
+	     * host级别的web.xml文件配置 默认没有此配置文件
+	     */
+	    InputSource hostWebXml = getHostWebXmlSource();
 
         long globalTimeStamp = 0;
         long hostTimeStamp = 0;
@@ -1428,8 +1437,11 @@ public class ContextConfig implements LifecycleListener {
                 }
             }
         }
-
-        if (entry != null && entry.getGlobalTimeStamp() == globalTimeStamp &&
+	
+	    /**
+	     * 每一个Host保存的有一份合并完成的配置 如果没有修改过的话 就不用再解析加载了
+	     */
+	    if (entry != null && entry.getGlobalTimeStamp() == globalTimeStamp &&
                 entry.getHostTimeStamp() == hostTimeStamp) {
             InputSourceUtil.close(globalWebXml);
             InputSourceUtil.close(hostWebXml);
@@ -1445,8 +1457,11 @@ public class ContextConfig implements LifecycleListener {
                     entry.getHostTimeStamp() == hostTimeStamp) {
                 return entry.getWebXml();
             }
-
-            WebXml webXmlDefaultFragment = createWebXml();
+	
+	        /**
+	         * WebXml对象是web.xml配置文件对应的java实体类
+	         */
+	        WebXml webXmlDefaultFragment = createWebXml();
             webXmlDefaultFragment.setOverridable(true);
             // Set to distributable else every app will be prevented from being
             // distributable when the default fragment is merged with the main
