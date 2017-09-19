@@ -153,6 +153,7 @@ public class WebRuleSet extends RuleSetBase {
 
 
     /**
+     * 添加web.xml配置文件的解析规则 Digest处理 看这部分的标签元素的处理 就对web.xml所有的配置项都了解了
      * <p>Add the set of Rule instances defined in this RuleSet to the
      * specified <code>Digester</code> instance, associating them with
      * our namespace URI (if any).  This method should only be called

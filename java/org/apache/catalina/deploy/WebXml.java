@@ -18,33 +18,19 @@
 
 package org.apache.catalina.deploy;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import javax.servlet.DispatcherType;
-import javax.servlet.MultipartConfigElement;
-import javax.servlet.ServletContext;
-import javax.servlet.SessionCookieConfig;
-import javax.servlet.SessionTrackingMode;
-import javax.servlet.descriptor.JspPropertyGroupDescriptor;
-import javax.servlet.descriptor.TaglibDescriptor;
-
 import org.apache.catalina.Context;
 import org.apache.catalina.Wrapper;
 import org.apache.catalina.core.ApplicationJspPropertyGroupDescriptor;
 import org.apache.catalina.core.ApplicationTaglibDescriptor;
 import org.apache.tomcat.util.descriptor.XmlIdentifiers;
 import org.apache.tomcat.util.res.StringManager;
+
+import javax.servlet.*;
+import javax.servlet.descriptor.JspPropertyGroupDescriptor;
+import javax.servlet.descriptor.TaglibDescriptor;
+import java.net.URL;
+import java.util.*;
+import java.util.Map.Entry;
 
 /**
  * Representation of common elements of web.xml and web-fragment.xml. Provides
@@ -1302,6 +1288,7 @@ public class WebXml {
 
 
     /**
+     * 将web.xml中的配置设置到StandardContext中相应的属性中去
      * Configure a {@link Context} using the stored web.xml representation.
      *
      * @param context   The context to be configured

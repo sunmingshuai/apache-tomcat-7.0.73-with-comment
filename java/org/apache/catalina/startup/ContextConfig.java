@@ -841,11 +841,12 @@ public class ContextConfig implements LifecycleListener {
                     Boolean.valueOf(context.getXmlValidation()),
                     Boolean.valueOf(context.getXmlNamespaceAware())));
         }
-
-        // 加载web.xml配置文件
-        webConfig();
+	
+	    // 加载web.xml配置文件 并把配置文件的内容对应的设置到StandardContext中去
+	    webConfig();
 
         if (!context.getIgnoreAnnotations()) {
+        	// 处理`listener` `filter` `servlet`中类,方法,字段上的@Resource注解
             applicationAnnotationsConfig();
         }
         if (ok) {
@@ -872,6 +873,7 @@ public class ContextConfig implements LifecycleListener {
         }
 
         // Make our application available if no problems were encountered
+	    // configured 标志位设置为true
         if (ok)
             context.setConfigured(true);
         else {
@@ -1218,15 +1220,14 @@ public class ContextConfig implements LifecycleListener {
         WebXml webXml = createWebXml();
 
         // Parse context level web.xml: /WEB-INF/web.xml
+	    // 解析项目工程目录下的 /WEB-INF/web.xml
         InputSource contextWebXml = getContextWebXmlSource();
         parseWebXml(contextWebXml, webXml, false);
 
         ServletContext sContext = context.getServletContext();
 
         // Ordering is important here
-
-	    // TODO Jar包是什么时候加载的
-	    // TODO 模块化开发fragment
+	    
         // Step 1. Identify all the JARs packaged with the application
         // If the JARs have a web-fragment.xml it will be parsed at this
         // point.
@@ -1239,7 +1240,7 @@ public class ContextConfig implements LifecycleListener {
 
         // Step 3. Look for ServletContainerInitializer implementations
         if (ok) {
-	        //TODO SpringServletContainerInitializer 有什么用
+	        //SpringServletContainerInitializer
             processServletContainerInitializers();
         }
 
@@ -1389,7 +1390,11 @@ public class ContextConfig implements LifecycleListener {
 	     *  2. 注册JspServlet(servlet-name:jsp) 拦截路径为"*.jsp,*.jspx" 拦截以*.jsp或者*.jspx结尾的路径
 	     *  3. 设置session过期时间 默认为30分钟
 	     *  4. 添加常用的浏览器能够处理的mime-mapping
+	     *  5. 添加默认的欢迎页面
+	     *
 	     */
+	    
+	    // 加载conf/web.xml
 	    InputSource globalWebXml = getGlobalWebXmlSource();
 	    /**
 	     * host级别的web.xml文件配置 默认没有此配置文件
@@ -1867,7 +1872,7 @@ public class ContextConfig implements LifecycleListener {
 
 
     /**
-     * TODO
+     *
      * Scan /WEB-INF/lib for JARs and for each one found add it and any
      * /META-INF/web-fragment.xml to the resulting Map. web-fragment.xml files
      * will be parsed before being added to the map. Every JAR will be added and
@@ -1878,6 +1883,7 @@ public class ContextConfig implements LifecycleListener {
      */
     protected Map<String,WebXml> processJarsForWebFragments(WebXml application) {
 
+        // StandardJarScanner
         JarScanner jarScanner = context.getJarScanner();
 
         boolean parseRequired = true;

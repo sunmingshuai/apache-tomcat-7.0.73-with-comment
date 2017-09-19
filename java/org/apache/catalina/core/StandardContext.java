@@ -5116,6 +5116,8 @@ public class StandardContext extends ContainerBase
                 if (noPluggabilityListeners.contains(listener)) {
                     listener.contextInitialized(tldEvent);
                 } else {
+                	// 调用listener的`contextInitialized`方法 很重要的一个事件节点
+	                // 例如启动`spring`的ContextLoaderListener便是在这里启动加载的
                     listener.contextInitialized(event);
                 }
                 fireContainerEvent("afterContextInitialized", listener);
@@ -5387,8 +5389,8 @@ public class StandardContext extends ContainerBase
 
 
     /**
-     *   最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用`mvn package`命令打包成标准web项目结构) 放到webapps目录下面
-     *   然后一步一步的跟进调试 如果对webapps里面自带的项目熟悉的话 用那个也是可以的 最好还是用自己做的项目
+     *  最好的学习方法就是把你手头的web项目(如果是maven web项目 先要用`mvn package`命令打包成标准web项目结构) 放到webapps目录下面
+     *  然后一步一步的跟进调试 如果对webapps里面自带的项目熟悉的话 用那个也是可以的 最好还是用自己做的项目
      * Start this component and implement the requirements
      * of {@link org.apache.catalina.util.LifecycleBase#startInternal()}.
      *
@@ -5529,6 +5531,7 @@ public class StandardContext extends ContainerBase
 
                 // Notify our interested LifecycleListeners
 	            // 这里需要注意StandardContext类的ContextConfig监听器 有对Lifecycle.CONFIGURE_START_EVENT事件做处理
+                // 藏的很隐蔽
                 fireLifecycleEvent(Lifecycle.CONFIGURE_START_EVENT, null);
                 
                 // Start our child containers, if not already started
@@ -5641,7 +5644,8 @@ public class StandardContext extends ContainerBase
 
             // Configure and call application event listeners
             if (ok) {
-                if (!listenerStart()) {//spring ContextLoaderListener in web.xml
+	            // 启动`spring`的ContextLoaderListener便是在这里启动加载的
+                if (!listenerStart()) {
                     log.error(sm.getString("standardContext.listenerFail"));
                     ok = false;
                 }
@@ -5666,6 +5670,7 @@ public class StandardContext extends ContainerBase
             }
             
             // Load and initialize all "load on startup" servlets
+	        // 设置在startup阶段完成后就加载的servlet在这里完成加载 也就是调用wrapper的`load`方法
             if (ok) {
                 if (!loadOnStartup(findChildren())){
                     log.error(sm.getString("standardContext.servletFail"));
