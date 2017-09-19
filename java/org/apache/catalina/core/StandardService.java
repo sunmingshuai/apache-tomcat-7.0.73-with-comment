@@ -418,6 +418,7 @@ public class StandardService extends LifecycleMBeanBase implements Service {
 
     /**
      *  启动()service容器的三个组件 container(engine) executor(默认没有) connector
+     *  都比较重要
      * Start nested components ({@link Executor}s, {@link Connector}s and
      * {@link Container}s) and implement the requirements of
      * {@link org.apache.catalina.util.LifecycleBase#startInternal()}.

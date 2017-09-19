@@ -989,7 +989,7 @@ public class Connector extends LifecycleMBeanBase  {
 
         // Initialize mapper listener
         // Actually Nothing Done Here
-	    // 很重要的一个类 init方法只是注册了mbean 后面会分析到
+	    // 很重要的一个类 init方法只是注册了mbean 后面在`startInternal`方法中会分析到
         mapperListener.init();
     }
 
@@ -1023,7 +1023,7 @@ public class Connector extends LifecycleMBeanBase  {
                  ("coyoteConnector.protocolHandlerStartFailed"), e);
         }
 
-        //TODO
+        //
         mapperListener.start();
     }
 

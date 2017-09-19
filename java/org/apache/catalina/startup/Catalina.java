@@ -75,7 +75,7 @@ public class Catalina {
     /**
      * Use await.
      */
-    protected boolean await = false;//true
+    protected boolean await = false;
 
     /**
      * Pathname to the server configuration file.
@@ -699,6 +699,7 @@ public class Catalina {
 
         // Start the new server
         try {
+            // 容器启动
             getServer().start();
         } catch (LifecycleException e) {
             log.fatal(sm.getString("catalina.serverStartFail"), e);
@@ -733,7 +734,7 @@ public class Catalina {
         }
 
         //TODO
-        if (await) {//true
+        if (await) {
             await();
             stop();
         }

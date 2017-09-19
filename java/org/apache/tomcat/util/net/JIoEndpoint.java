@@ -444,7 +444,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
             // Create worker collection
             // <connector/>没有配置executor属性 创建默认的线程池
             if (getExecutor() == null) {
-            	//TODO
+            	
                 createExecutor();
             }
 

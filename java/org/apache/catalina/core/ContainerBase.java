@@ -1443,7 +1443,7 @@ public abstract class ContainerBase extends LifecycleMBeanBase
         if (thread != null)
             return;
         //在创建StandardEngine对象的时候被设为10
-	    //其他的容器比如StandardHost对象的backgroundProcessorDelay属性就不再大于0了
+	    //其他子的容器比如StandardHost对象的backgroundProcessorDelay属性就不再大于0了
         if (backgroundProcessorDelay <= 0)
             return;
 
@@ -1504,7 +1504,8 @@ public abstract class ContainerBase extends LifecycleMBeanBase
                         // Ignore
                     }
                     if (!threadDone) {
-                        Container parent = (Container) getMappingObject();//this
+                        // point to itself
+                        Container parent = (Container) getMappingObject();
                         ClassLoader cl = 
                             Thread.currentThread().getContextClassLoader();
                         if (parent.getLoader() != null) {
