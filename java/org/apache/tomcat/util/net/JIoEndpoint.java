@@ -219,7 +219,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 
                 try {
                     //if we have reached max connections, wait
-	                //TODO 这里的等待是放到等待队列去 还是直接抛弃?
+	                //TODO 这里的等待是放到等待队列去 还是直接抛弃 没有返回值
                     countUpOrAwaitConnection();
 
                     Socket socket = null;
@@ -240,6 +240,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
                     // Configure the socket
                     if (running && !paused && setSocketOptions(socket)) {
                         // Hand this socket off to an appropriate processor
+                        // 将这个socket交给processor线程池处理器处理 acceptor继续接收请求socket请求
                         if (!processSocket(socket)) {
                             countDownConnection();
                             // Close socket right away
@@ -444,7 +445,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
             // Create worker collection
             // <connector/>没有配置executor属性 创建默认的线程池
             if (getExecutor() == null) {
-            	
+            	// TODO 创建线程池 源码值得阅读
                 createExecutor();
             }
 
@@ -452,6 +453,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 	        //创建门闩锁
             initializeConnectionLatch();
 
+            // 开启接收请求的线程 默认是1个
             startAcceptorThreads();
 
             //TODO
@@ -545,6 +547,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
         // Process the request from this socket
         try {
             SocketWrapper<Socket> wrapper = new SocketWrapper<Socket>(socket);
+            // 一个连接最大的请求次数
             wrapper.setKeepAliveLeft(getMaxKeepAliveRequests());//100
             wrapper.setSecure(isSSLEnabled());
             // During shutdown, executor may be null - avoid NPE

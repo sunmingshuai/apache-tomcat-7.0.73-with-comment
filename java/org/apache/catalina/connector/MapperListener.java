@@ -105,7 +105,7 @@ public class MapperListener extends LifecycleMBeanBase
         // Find any components that have already been initialized since the
         // MBean listener won't be notified as those components will have
         // already registered their MBeans
-        findDefaultHost();//localhost
+        findDefaultHost();
 
         Engine engine = (Engine) connector.getService().getContainer();
         addListeners(engine);//递归为所有的容器注册MapperListener监听器 对已经形成的容器建立体系 便于查找
@@ -286,6 +286,7 @@ public class MapperListener extends LifecycleMBeanBase
         }
 
         if(found) {
+            // localhost
             mapper.setDefaultHostName(defaultHost);
         } else {
             log.warn(sm.getString("mapperListener.unknownDefaultHost",

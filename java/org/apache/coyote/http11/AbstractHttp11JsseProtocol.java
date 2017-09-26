@@ -115,7 +115,6 @@ public abstract class AbstractHttp11JsseProtocol<S>
     public void init() throws Exception {
         // SSL implementation needs to be in place before end point is
         // initialized
-        // 忽略
         sslImplementation = SSLImplementation.getInstance(sslImplementationName);//SSL https
         super.init();
     }

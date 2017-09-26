@@ -692,12 +692,13 @@ public abstract class AbstractEndpoint<S> {
 	    /**
 	     * @see JIoEndpoint#bind()
 	     */
-        int count = getAcceptorThreadCount();//1
+        //1
+        int count = getAcceptorThreadCount();
         acceptors = new Acceptor[count];
 
         for (int i = 0; i < count; i++) {
             acceptors[i] = createAcceptor();
-            String threadName = getName() + "-Acceptor-" + i;//TP-Accetpor-1
+            String threadName = getName() + "-Acceptor-" + i;//TP-Accetpor-0
             acceptors[i].setThreadName(threadName);
             Thread t = new Thread(acceptors[i], threadName);
             t.setPriority(getAcceptorThreadPriority());
@@ -760,7 +761,7 @@ public abstract class AbstractEndpoint<S> {
     protected LimitLatch initializeConnectionLatch() {
         if (maxConnections==-1) return null;
         if (connectionLimitLatch==null) {
-            connectionLimitLatch = new LimitLatch(getMaxConnections());//startInternal方法的时候完成初始化  200
+            connectionLimitLatch = new LimitLatch(getMaxConnections());
         }
         return connectionLimitLatch;
     }
@@ -772,6 +773,7 @@ public abstract class AbstractEndpoint<S> {
     }
 
     protected void countUpOrAwaitConnection() throws InterruptedException {
+        // 无限连接
         if (maxConnections==-1) return;
         LimitLatch latch = connectionLimitLatch;
         if (latch!=null) latch.countUpOrAwait();
