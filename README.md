@@ -14,8 +14,11 @@ run->edit configurations-> + ->application
 ```
 在右面的方框中 输入对应的值:
 Main class: org.apache.catalina.startup.Bootstrap
+
 Vm options: -Dcatalina.home="/Users/sunms/workspace/sourcecode/apache-tomcat-7.0.73-src/lunch"
+
 jre: 1.7
+
 4.debug入口
 ```sh
 BootStrap.main();
