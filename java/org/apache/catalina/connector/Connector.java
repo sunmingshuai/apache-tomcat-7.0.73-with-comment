@@ -1023,7 +1023,7 @@ public class Connector extends LifecycleMBeanBase  {
                  ("coyoteConnector.protocolHandlerStartFailed"), e);
         }
 
-        //
+        // 对现有体系结构的融合 便于后面处理socket时请求的处理
         mapperListener.start();
     }
 

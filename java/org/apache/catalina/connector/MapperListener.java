@@ -108,7 +108,8 @@ public class MapperListener extends LifecycleMBeanBase
         findDefaultHost();
 
         Engine engine = (Engine) connector.getService().getContainer();
-        addListeners(engine);//递归为所有的容器注册MapperListener监听器 对已经形成的容器建立体系 便于查找
+	    //递归为所有的容器注册MapperListener监听器 对已经形成的容器建立体系 便于查找
+        addListeners(engine);
 
         Container[] conHosts = engine.findChildren();
         for (Container conHost : conHosts) {
