@@ -184,7 +184,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 
     // --------------------------------------------------- Acceptor Inner Class
     /**
-     * 监听tcp/ip连接的守护线程 并将连接移交给合适的处理器
+     * 监听tcp/ip连接的守护线程 并不负责处理请求的具体逻辑 而是将连接移交给合适的处理器
      * The background thread that listens for incoming TCP/IP connections and
      * hands them off to an appropriate processor.
      */
@@ -282,6 +282,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 
 
     /**
+     * socket请求处理线程
      * This class is the equivalent of the Worker, but will simply use in an
      * external Executor thread pool.
      */
@@ -531,6 +532,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 
 
     /**
+     * 交给线程池处理
      * Process a new connection from a new client. Wraps the socket so
      * keep-alive and other attributes can be tracked and then passes the socket
      * to the executor for processing.
@@ -554,6 +556,7 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
             if (!running) {
                 return false;
             }
+            //将请求交给线程池处理后立马返回 继续接受socket请求
             getExecutor().execute(new SocketProcessor(wrapper));
         } catch (RejectedExecutionException x) {
             log.warn("Socket processing request was rejected for:"+socket,x);

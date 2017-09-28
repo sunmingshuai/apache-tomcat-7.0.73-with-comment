@@ -64,7 +64,7 @@ public abstract class AbstractProcessor<S> implements ActionHook, Processor<S> {
         request = new Request();
         response = new Response();
         response.setHook(this);
-        request.setResponse(response);//互为成员变量
+        request.setResponse(response);
     }
 
 

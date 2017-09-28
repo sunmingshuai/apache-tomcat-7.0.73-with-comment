@@ -756,7 +756,7 @@ public class CoyoteAdapter implements Adapter {
 
         while (mapRequired) {
             // This will map the the latest version by default
-	        // TODO important
+	        // 寻找合适的处理器处理
             connector.getMapper().map(serverName, decodedURI, version,
                                       request.getMappingData());
             request.setContext((Context) request.getMappingData().context);
