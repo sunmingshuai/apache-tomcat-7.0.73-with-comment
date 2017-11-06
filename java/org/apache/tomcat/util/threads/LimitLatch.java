@@ -24,10 +24,9 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 
 /**
- * 阻塞队列
+ * 有最大共享数量的锁
  * Sun: 这个锁有如下特征 允许总共有limit个用户拿到这把锁 超过limit个用户尝试去拿锁的时候 会被放入到一个FIFO队列中去
  *      此上下文表示的意思就是: 一个有maxThreads个线程处理请求 如果有超过这么多个线程同时到来的话 那么请求就会被放到FIFO队列中去
- *      TODO 源码学习
  * Shared latch that allows the latch to be acquired a limited number of times
  * after which all subsequent requests to acquire the latch will be placed in a
  * FIFO queue until one of the shares is returned.
@@ -35,7 +34,11 @@ import java.util.concurrent.locks.AbstractQueuedSynchronizer;
 public class LimitLatch {
 
     private static final Log log = LogFactory.getLog(LimitLatch.class);
-
+    
+    
+    /**
+     *  队列同步器 AQS
+     */
     private class Sync extends AbstractQueuedSynchronizer {
         private static final long serialVersionUID = 1L;
 

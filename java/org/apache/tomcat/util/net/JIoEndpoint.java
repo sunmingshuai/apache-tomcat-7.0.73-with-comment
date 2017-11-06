@@ -219,7 +219,6 @@ public class JIoEndpoint extends AbstractEndpoint<Socket> {
 
                 try {
                     //if we have reached max connections, wait
-	                //TODO 这里的等待是放到等待队列去 还是直接抛弃 没有返回值
                     countUpOrAwaitConnection();
 
                     Socket socket = null;
